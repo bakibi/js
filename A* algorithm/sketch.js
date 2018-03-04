@@ -33,12 +33,12 @@ var w ,h;
 var path  = [];
 
 
-//
+// cette fonction creer un objet de type Spot : est une cellule de la grid
 function Spot(i,j){
-    this.i = i;
-    this.j = j;
-    this.f = 0;
-    this.h = 0;
+    this.i = i;// position
+    this.j = j;//position
+    this.f = 0;//la valeur minimale de la fct
+    this.h = 0; // l'heurustic
     this.g = 0;
     this.neighbors = [];
     this.previous = undefined;
@@ -55,6 +55,9 @@ function Spot(i,j){
       if(i>0) this.neighbors.push(grid[i-1][j]);
       if(j<rows -1) this.neighbors.push(grid[i][j+1]);
       if(j>0) this.neighbors.push(grid[i][j-1]);
+      if(i<cols-1 && j<rows - 1) this.neighbors.push(grid[i+1][j+1]);
+      if(i>0 && j> 0) this.neighbors.push(grid[i-1][j-1]);
+
 
 }
 }
@@ -83,7 +86,7 @@ function setup(){
     }
 
 
-    start = grid[0][0];
+    start = grid[0][5];
     end  = grid[cols-1][rows-1];
 
     openSet.push(start);
