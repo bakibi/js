@@ -9,7 +9,7 @@ function removeFromArray(arr,elmt){
 }
 
 
-//
+// heuristic function
 function heuristic(a,b){
   //var d = dist(a.i,a.j,b.i,b.j);
   var d = abs(a.i-b.i) + abs(a.j - b.j);
@@ -17,20 +17,23 @@ function heuristic(a,b){
 
 }
 
-
+// LES VARIABLES CHANGEANT
 var cols = 25;
 var rows = 25;
 
+// La grid ou la surface
 var grid = new Array(cols);
 
 
-var openSet = [];
-var closeSet = [];
-var start;
-var end;
+var openSet = [];//Les cellules non traiter
+var closeSet = [];// les cellules qu on a fini a traiter
+var start;//le point de depart
+var end;// le point d'arriver
 var w ,h;
 var path  = [];
 
+
+//
 function Spot(i,j){
     this.i = i;
     this.j = j;
