@@ -132,17 +132,23 @@ function draw(){
       var neighbor = neighbors[i];
       if(!closeSet.includes(neighbor) && !neighbor.wall){
         var tempG = current.g + 1;
+          var newPath = false;
           if(openSet.includes(neighbor)){ // si il est dans la openSet
             if(tempG<neighbor.g){
               neighbor.g = tempG;
+              newPath = true;
             }
           }else { // si il n'est pas dans la open
             neighbor.g =   tempG;
             openSet.push(neighbor);
+            newPath = true;
           }
-          neighbor.h = heuristic(neighbor,end);
-          neighbor.f = neighbor.g + neighbor.h;
-          neighbor.previous = current;
+          if(newPath){
+            neighbor.h = heuristic(neighbor,end);
+            neighbor.f = neighbor.g + neighbor.h;
+            neighbor.previous = current;
+          }
+
       }
     }//end for
 
