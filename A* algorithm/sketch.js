@@ -11,15 +11,15 @@ function removeFromArray(arr,elmt){
 
 // heuristic function
 function heuristic(a,b){
-  //var d = dist(a.i,a.j,b.i,b.j);
-  var d = abs(a.i-b.i) + abs(a.j - b.j);
+  var d = dist(a.i,a.j,b.i,b.j);
+//  var d = abs(a.i-b.i) + abs(a.j - b.j);
   return d;
 
 }
 
 // LES VARIABLES CHANGEANT
-var cols = 25;
-var rows = 25;
+var cols = 50;
+var rows = 50;
 
 // La grid ou la surface
 var grid = new Array(cols);
@@ -66,7 +66,8 @@ function Spot(i,j){
       if(j>0) this.neighbors.push(grid[i][j-1]);
       if(i<cols-1 && j<rows - 1) this.neighbors.push(grid[i+1][j+1]);
       if(i>0 && j> 0) this.neighbors.push(grid[i-1][j-1]);
-
+      if(i>0 && j< rows -1) this.neighbors.push(grid[i-1][j +1]);
+      if(i<cols-1 && j>0) this.neighbors.push(grid[i+1][j-1]);
 
 }
 }
@@ -95,9 +96,10 @@ function setup(){
     }
 
 
-    start = grid[0][0];
-    end  = grid[rows - 1][cols - 1];
-
+    start = grid[0][parseInt(cols/2,10)];
+    end  = grid[rows -1][parseInt(cols/2,10)];
+    start.wall = false;
+    end.wall = false;
     openSet.push(start);
     console.log(grid);
 
