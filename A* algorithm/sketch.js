@@ -42,8 +42,17 @@ function Spot(i,j){
     this.g = 0;
     this.neighbors = [];
     this.previous = undefined;
+    this. wall = false;
+
+    //chance d obstacle
+    if(random(1)<0.3){
+      this.wall = true;
+    }
     this.show = function(col){
       fill(col);
+      if(this.wall){
+        fill(0);
+      }
       noStroke();
       rect(this.i*w,this.j*h,w-1,h-1);
     }
@@ -86,8 +95,8 @@ function setup(){
     }
 
 
-    start = grid[0][5];
-    end  = grid[cols-1][rows-1];
+    start = grid[0][0];
+    end  = grid[rows - 1][cols - 1];
 
     openSet.push(start);
     console.log(grid);
@@ -119,7 +128,7 @@ function draw(){
     var neighbors = current.neighbors;
     for(var i=0;i<neighbors.length;i++){
       var neighbor = neighbors[i];
-      if(!closeSet.includes(neighbor)){
+      if(!closeSet.includes(neighbor) && !neighbor.wall){
         var tempG = current.g + 1;
           if(openSet.includes(neighbor)){ // si il est dans la openSet
             if(tempG<neighbor.g){
