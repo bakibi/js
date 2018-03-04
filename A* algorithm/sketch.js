@@ -1,4 +1,5 @@
 
+// this function remove a element from a array
 function removeFromArray(arr,elmt){
   for(var i = arr.length -1 ;i>=0; i--){
     if(arr[i] == elmt){
@@ -8,9 +9,9 @@ function removeFromArray(arr,elmt){
 }
 
 
-
+//
 function heuristic(a,b){
-  var d = dist(a.i,a.j,b.i,b.j);
+  //var d = dist(a.i,a.j,b.i,b.j);
   var d = abs(a.i-b.i) + abs(a.j - b.j);
   return d;
 
