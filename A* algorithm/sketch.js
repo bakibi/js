@@ -156,7 +156,7 @@ function draw(){
 
   background(0);
 
-
+//affichage
 
   for(var i = 0;i<cols;i++){
         for(var j = 0;j<cols;j++){
