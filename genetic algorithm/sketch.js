@@ -1,6 +1,3 @@
-// The Nature of Code
-// Daniel Shiffman
-// http://natureofcode.com
 
 // Genetic Algorithm, Evolving Shakespeare
 
@@ -52,7 +49,7 @@ function setup() {
   stats.class("stats");
 
   //createCanvas(640, 360);
-  target = "To be or not to be.";
+  target = "Bakibi live in Morocco .";
   popmax = 200;
   mutationRate = 0.01;
 
