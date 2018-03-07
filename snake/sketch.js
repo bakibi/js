@@ -5,14 +5,36 @@
 var s;
 var food;
 var scl = 10;
+var BestScoreP,BestScoreV = 0;
+var button;
+
+
 
 
 function setup(){
-createCanvas(500,500);
-s = new Snake(scl);
-frameRate(10);
+  noLoop();
+  BestScoreP = createP("Best Score:");
+  BestScoreP.class('bestscore');
+  BestScoreP.position(600,30);
+
+  createCanvas(500,500);
+  s = new Snake(scl);
+
+  button = createButton('jouer');
+  button.position(200,60);
+  button.mousePressed(function(){
+    s.tail = []
+    s.total = 0;
+    loop();
+  });
+
+
+  frameRate(10);
   new_position_food();
 }
+
+
+
 
 function new_position_food(){
   var rows = floor(height/scl);
@@ -23,7 +45,11 @@ function new_position_food(){
 
 function draw(){
   background(51);
-  s.death();
+  if(s.death()){
+    BestScoreV = s.tail.length;
+    BestScoreP.html("Best Score:"+BestScoreV);
+    noLoop();
+  }
   s.update();
   s.show();
   if(s.eat(food)){
@@ -51,5 +77,7 @@ function keyPressed(){
     if(s.xspeed !=1 && s.yspeed!=0)// si il marche pas  a droite
       s.dir( -1,0);
   }
+
+
 
 }
