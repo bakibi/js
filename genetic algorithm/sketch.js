@@ -43,14 +43,14 @@ function setup() {
   allPhrases = createP("All phrases:");
   allPhrases.position(600,10);
   allPhrases.class("all");
-
+  
   stats = createP("Stats");
   //stats.position(10,200);
   stats.class("stats");
 
   //createCanvas(640, 360);
   target = "Bakibi live in Morocco .";
-  popmax = 200;
+  popmax = 1000;
   mutationRate = 0.01;
 
   // Create a population with a target phrase, mutation rate, and population max
