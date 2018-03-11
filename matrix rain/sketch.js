@@ -10,7 +10,7 @@ function setup(){
   )
 
     for(var i = 0;i<width/10;i++){
-      let a = new cols(i*10);
+      let a = new cols(i*10,random(2,20));
       colls.push(a);
 
     }
@@ -24,18 +24,28 @@ function draw(){
 
   for(var i = 0;i<colls.length;i++){
     let a = colls[i];
+    if(a.hasFinished() == false){
       a.move();
       a.render();
+    }
+    else {
+      a.refrech(random(2,20));
+      a.move();
+      a.render();
+    }
+
   }
 }
 
 
 
-function Symbol(x,y){
+function Symbol(x,y,sp){
   this.x = x;
   this.y = y;
   this.value;
-  this.speed = 2;
+  this.speed = sp;
+
+
 
 
   this.setRandomSymbol = function(){ // katakana code
@@ -61,17 +71,24 @@ function Symbol(x,y){
 
 
 
-function cols(x){
+function cols(x,sp){
   this.symbols = [];
   this.x = x;
   this.offset = 10;
+  this.speed = sp;
 
-  var mm = random(0,height/this.offset);
-  for(var i = 0;i<=mm;i++){
-    var n = new Symbol(this.x,this.offset * i);
-    n.setRandomSymbol();
-    this.symbols.push(n);
+  this.refrech = function(spp){
+    this.symbols = [];
+    var mm = random(0,height/this.offset);
+    for(var i = 0;i<=mm;i++){
+      var n = new Symbol(this.x,this.offset * i,spp);
+      n.setRandomSymbol();
+      this.symbols.push(n);
+    }
+
   }
+    this.refrech(this.speed);
+
 
   this.render = function(){
 
@@ -91,6 +108,12 @@ function cols(x){
     }
   }
 
+
+  this.hasFinished=function(){
+    if(this.symbols[0].y>=height)
+      return true;
+    return false;
+  }
 
 
 }
